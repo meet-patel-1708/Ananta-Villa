@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="booking-history">
+    <h1>My Bookings</h1>
+    
+    <div class="booking-card" *ngFor="let room of rooms" >
+      <div class="image-container">
+        <img *ngIf="room.roomDetails.image" [src]="room.roomDetails.image" alt="Super Delux Room" class="img">
+        <div class="booking-status">Confirmed</div>
+      </div>
+      
+      <div class="booking-details">
+        <h2 class="room-title">{{room.roomDetails.title}}</h2>
+        <p class="price">₹{{room.roomDetails.price}}</p>
+        
+        <div class="room-specs">
+          <div class="spec-item">
+            <i class="fas fa-bed"></i>
+            <span>{{room.roomDetails.bed}}</span>
+          </div>
+          <div class="spec-item">
+            <i class="fas fa-vector-square"></i>
+            <span>{{room.roomDetails.size}}</span>
+          </div>
+        </div>
+        
+        <div class="guest-info">
+          <div class="guest-detail">{{room.adults}}</div>
+          <div class="guest-detail">{{room.children}}</div>
+        </div>
+        
+        <div class="booking-dates">
+          <div class="date-group">
+            <div class="date-label">Check-in</div>
+            <div class="date-value">{{room.checkInDate}}</div>
+          </div>
+          <div class="date-group">
+            <div class="date-label">Check-out</div>
+            <div class="date-value">{{room.checkOutDate}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

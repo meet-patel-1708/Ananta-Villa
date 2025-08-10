@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="image">
+    <img class="img" src="./assets/image/contact.png" alt="" srcset="">
+    <div class="text-overlay">
+        <p>Contact US</p>
+        <p>- We will help to solve any problem - </p>
+    </div>
+</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3628.234249326372!2d73.66557942481774!3d24.581110706379683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3967e54509cbb11f%3A0xb80d9ade8c2b2e5c!2sHaridas%20Ji%20Ki%20Magri%2C%20Shavri%20Colony%2C%20Udaipur%2C%20Rajasthan%20313001!5e0!3m2!1sen!2sin!4v1738576438330!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<p class="title">Need Help With Your Online Booking, Have A Question Or Need More Information? Just Drop Us A Line!</p>
+<div class="Details">
+    <div class="location"> 
+        <p><i class="fas fa-map-marker-alt"></i> Our Location</p>
+        <p>Haridasji Ki Magri, Udaipur, Rajasthan, 313001 Udaipur, India</p>
+    </div>
+    <div class="MobileNumber">
+        <p><i class="fas fa-phone"></i> Contact</p>
+        <p><i class="fas fa-mobile-alt"></i> Phone: +91 9426389817</p>
+        <p><i class="fas fa-envelope"></i> Email: {{email}}</p>
+    </div>
+</div>
+<div class="contact-forms">
+    <h1>Do you Have Any Wishes?</h1>
+    <form action="" #ContactDataForm="ngForm" (ngSubmit)="save(ContactDataForm)" class="Contact">
+        <label for="">Name:</label>
+        <input name="name" id="name" placeholder="Fill Your Name" type="text" minlength="10" maxlength="30" required #name="ngModel" [(ngModel)]="ContactData.name" [class.is_invalid]="name.touched && name.invalid">
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors?.['required']">Name is mandatory</div>
+            <div *ngIf="name.errors?.['minlength']">Minimum length of name is 10</div>
+            <div *ngIf="name.errors?.['maxlength']">Maximum length of name is 30</div>
+        </div>
+
+        <br>
+        <label for="">Email:</label>
+        <input name="email" type="email" placeholder="Fill Your Email ID" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required #email="ngModel" [class.is_invalid]="email.invalid && email.touched" [(ngModel)]="ContactData.email">
+        <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+            <div *ngIf="email.errors?.['required']">Email Is Mandatory</div>
+            <div *ngIf="email.errors?.['pattern']">Email's Pattern is Not Match</div>
+        </div>
+        <br>
+        <label for="">MobileNumber:</label>
+        <input name="mobileno"  type="text" minlength="10" maxlength="10" placeholder="Fill Your Mobile Number" [class.is_invalid]="mobileno.invalid && mobileno.touched" required #mobileno="ngModel" [(ngModel)]="ContactData.mobileno">
+        <div class="alert alert-danger" *ngIf="mobileno.invalid && mobileno.touched">
+            <div *ngIf="mobileno.errors?.['required']">MobileNumber Is Mandatory</div>
+            <div *ngIf="mobileno.errors?.['minlength']">Minimum Length Of  MobileNumber is 10</div>
+            <div *ngIf="mobileno.errors?.['minlength']">Maximum Length Of  MobileNumber is 10</div>
+        </div>
+        <br>
+        <label for="">Message:</label>
+        <input name="message"  type="text" [class.is_invalid]="message.invalid && message.touched" placeholder="Fill Your Message" minlength="50" maxlength="200" required #message="ngModel" [(ngModel)]="ContactData.message">
+        <div class="alert alert-danger" *ngIf="message.invalid && message.touched">
+            <div *ngIf="message.errors?.['required']">Message Is required</div>
+            <div *ngIf="message.errors?.['minlength']">Minimum Length of Message Is 50</div>
+            <div *ngIf="message.errors?.['maxlength']">Maximum Length of Message Is 200</div>
+        </div>
+        <br>
+        <Button class="btn" type="submit">Send A Message</Button>
+    </form>
+</div>

@@ -1,0 +1,85 @@
+<!-- Existing Cart UI -->
+<app-navbar></app-navbar>
+<div class="cart-container">
+  <h2 class="cart-header">Your Cart</h2>
+
+  <div *ngIf="cartItems.length > 0">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <div class="cart-item-grid">
+        <div class="cart-image-container">
+          <img [src]="item.details.image" [alt]="item.details.title" class="cart-image">
+        </div>
+
+        <div class="cart-content">
+          <h3>{{ item.details.title }}</h3>
+
+          <div class="cart-details">
+            <div class="detail-group">
+              <p class="price">{{ item.details.price }} ₹</p>
+              <p class="Adults">
+                <strong>Adults:</strong> {{ item.details.adults }}
+                <span class="edit-icon" (click)="openEditModal(item, 'adults')">✏️</span>
+              </p>
+              <p class="childern">
+                <strong>Children:</strong> {{ item.details.children }}
+                <span class="edit-icon" (click)="openEditModal(item, 'children')">✏️</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="dates">
+            <div class="date-group">
+              <span class="date-label">Check-in</span>
+              <div class="date-value">
+                {{ item.details.checkInDate | date }}
+                <span class="edit-icon" (click)="openEditModal(item, 'checkInDate')">✏️</span>
+              </div>
+            </div>
+            <div class="date-group">
+              <span class="date-label">Check-out</span>
+              <div class="date-value">
+                {{ item.details.checkOutDate | date }}
+                <span class="edit-icon" (click)="openEditModal(item, 'checkOutDate')">✏️</span>
+              </div>
+            </div>
+          </div>
+          <div class="cart-actions">
+            <button class="remove-btn" (click)="bookRoom(item._id)">
+              <span>Book Now</span>
+            </button>
+          </div>
+          <div class="cart-actions">
+            <button class="remove-btn" (click)="removeFromCart(item._id)">
+              <span>Remove from Cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty</p>
+    <a routerLink="/rooms" class="continue-shopping">Continue Shopping</a>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" *ngIf="isModalOpen">
+  <div class="modal">
+    <h3>Edit {{ fieldToEdit | titlecase }}</h3>
+    <div class="modal-body">
+      <label *ngIf="fieldToEdit === 'adults' || fieldToEdit === 'children'">
+        <input type="number" [(ngModel)]="selectedItem!.details[fieldToEdit]" min="0" />
+      </label>
+      <label *ngIf="fieldToEdit === 'checkInDate' || fieldToEdit === 'checkOutDate'">
+        <input type="date" [(ngModel)]="selectedItem!.details[fieldToEdit]" />
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="save-btn" (click)="saveCartItemChanges()">Save</button>
+      <button class="close-btn" (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

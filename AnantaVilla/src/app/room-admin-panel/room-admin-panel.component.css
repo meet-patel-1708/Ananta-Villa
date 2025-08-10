@@ -1,0 +1,388 @@
+/* Ultra Luxury CSS */
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #333;
+  }
+  
+  .rooms-container {
+    max-width: 1000px;
+    margin-top:50px;
+    margin-left:300px;
+    padding: 20px;
+    background: #080707;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .rooms-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ddab04;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .room {
+    border: 1px solid #3c3939;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #353333;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .room:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .room h3 {
+    font-size: 1.8rem;
+    color: #b69b04;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .room p {
+    font-size: 1.2rem;
+    color: #b69b04;
+    margin-bottom: 8px;
+  }
+  
+  .images {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .images img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .images img:hover {
+    transform: scale(1.1);
+  }
+  
+  .details label {
+    font-weight: bold;
+    color: #4b6584;
+  }
+  
+  .details input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .details input:focus {
+    border-color: #4b6584;
+    outline: none;
+  }
+  
+  button {
+    background: var(--primary-gold);
+    color: #C5A572;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem;
+    border: 1px solid #C5A572;
+  }
+  
+  button:hover {
+    background: #C5A572;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(197, 165, 114, 0.3);
+  color:black;
+  }
+  
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 80%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modal-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff4757;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter {
+    padding: 20px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  .filter h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #4b6584;
+    margin-bottom: 20px;
+  }
+  
+  .filter label {
+    font-size: 1rem;
+    color: #4b6584;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  
+  .filter select, .filter input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filter select:focus, .filter input:focus {
+    border-color: #4b6584;
+    outline: none;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /* Error message styling */
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    display: block;
+    background-color: #eee;
+    padding:10px;
+    width:30%;
+    border-radius: 25px;
+  }
+  
+  /* Input field styling for invalid state */
+  .is-invalid {
+    border: 1px solid red;  
+  }
+  
+  /* General input field styling */
+  input[type="number"],
+  input[type="date"] {
+    padding: 6px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Add hover and focus styles for inputs */
+  input[type="number"]:focus,
+  input[type="date"]:focus {
+    outline: none;
+    border: 1px solid #007bff;
+  }
+  
+  /* Add styling for error container */
+  .details .error {
+    margin-left: 5px;
+  }
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toast {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInOut 3s ease-in-out;
+    width: 50%;
+  }
+  
+  .toast.success {
+    background-color: #28a745;
+  }
+  
+  .toast.error {
+    background-color: #dc3545;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    10%, 90% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+  .toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toast {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    color: white;
+    opacity: 0.9;
+  }
+  
+  .toast.success {
+    background-color: #4caf50;
+  }
+  
+  .toast.error {
+    background-color: #f44336;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+  
+  .modal-body {
+    margin: 20px 0;
+  }
+  
+  .modal-body input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .save-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-icon {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  
+  .edit-icon:hover {
+    opacity: 0.7;
+  }

@@ -1,0 +1,75 @@
+<app-admin-panel-navbar></app-admin-panel-navbar>
+<div class="toast-container">
+    <div *ngFor="let toast of toasts" class="toast" [ngClass]="toast.type">
+      {{ toast.message }}
+    </div>
+  </div>
+  
+  <div class="rooms-container">
+    <h2>Rooms</h2>
+    <div *ngFor="let room of rooms" class="room">
+      <h3>{{ room.Name }}</h3>
+      <p>
+        <strong>Bed:</strong> {{ room.Bed }}
+        <span class="edit-icon" (click)="openEditModal(room, 'Bed')">✏️</span>
+      </p>
+      <p>
+        <strong>Price:</strong> {{ room.Price }}
+        <span class="edit-icon" (click)="openEditModal(room, 'Price')">✏️</span>
+      </p>
+      <p>
+        <strong>Size:</strong> {{ room.Size }}
+        <span class="edit-icon" (click)="openEditModal(room, 'Size')">✏️</span>
+      </p>
+      <div class="images">
+        <img *ngIf="room.Image1" 
+       [src]="room.Image1" 
+       (error)="handleImageError($event)"
+       (click)="openImageViewer(room.Image1)" 
+       alt="Room Image 1" 
+       style="cursor: pointer;">
+        <img *ngIf="room.Image2" [src]="room.Image2" (click)="openImageViewer(room.Image2)" alt="Room Image 2" style="cursor: pointer;">
+        <img *ngIf="room.Image3" [src]="room.Image3" (click)="openImageViewer(room.Image3)" alt="Room Image 3" style="cursor: pointer;">
+        <img *ngIf="room.Image4" [src]="room.Image4" (click)="openImageViewer(room.Image4)" alt="Room Image 4" style="cursor: pointer;">
+      </div>
+      <button class="button" (click)="deleteRoom(room._id)">Delete</button>
+    </div>
+  </div>
+  
+  <!-- Image Viewer Modal -->
+  <div *ngIf="isImageViewerOpen" class="modal-overlay" (click)="closeImageViewer()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-button" (click)="closeImageViewer()">×</button>
+      <div class="image-container" 
+           (wheel)="handleZoom($event)"
+           (mousedown)="startPan($event)"
+           (mousemove)="pan($event)"
+           (mouseup)="endPan()"
+           (mouseleave)="endPan()">
+        <img [src]="selectedImage" 
+             [style.transform]="'scale(' + scale + ') translate(' + translateX + 'px, ' + translateY + 'px)'"
+             alt="Room image">
+      </div>
+      <div class="controls">
+        <button (click)="zoomIn()">+</button>
+        <button (click)="zoomOut()">-</button>
+        <button (click)="resetZoom()">Reset</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" *ngIf="isEditModalOpen">
+    <div class="modal">
+      <h3>Edit {{ editField }}</h3>
+      <div class="modal-body">
+        <input 
+          type="text" 
+          [(ngModel)]="editValue"
+          [placeholder]="'Enter new ' + editField"
+        >
+      </div>
+      <div class="modal-footer">
+        <button (click)="saveRoomChanges()" class="save-btn">Save</button>
+        <button (click)="closeEditModal()" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>

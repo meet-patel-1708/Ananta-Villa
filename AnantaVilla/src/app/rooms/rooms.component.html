@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<div class="toast-container">
+  <div *ngFor="let toast of toasts" class="toast" [ngClass]="toast.type">
+    {{ toast.message }}
+  </div>
+</div>
+
+<div class="rooms-container">
+  <h2>Rooms</h2>
+  <div *ngFor="let room of rooms" class="room">
+    <h3>{{ room.Name }}</h3>
+    <p><strong>Bed:</strong> {{ room.Bed }}</p>
+    <p><strong>Price:</strong> {{ room.Price }}₹</p>
+    <p><strong>Size:</strong> {{ room.Size }}</p>
+    <div class="images">
+      <img *ngIf="room.Image1" [src]="room.Image1" (error)="handleImageError($event)" (click)="openImageViewer(room.Image1)" alt="Room Image 1" style="cursor: pointer;">
+      <img *ngIf="room.Image2" [src]="room.Image2" (click)="openImageViewer(room.Image2)" alt="Room Image 2" style="cursor: pointer;">
+      <img *ngIf="room.Image3" [src]="room.Image3" (click)="openImageViewer(room.Image3)" alt="Room Image 3" style="cursor: pointer;">
+      <img *ngIf="room.Image4" [src]="room.Image4" (click)="openImageViewer(room.Image4)" alt="Room Image 4" style="cursor: pointer;">
+    </div>
+
+    <div class="details">
+      <label for="">Number of adults:</label>
+      <input type="number" required min="0" [(ngModel)]="RoomDetails.adults" name="adults" #adults="ngModel" [class.is-invalid]="adults.invalid && adults.touched">
+      <div *ngIf="adults.invalid && adults.touched" class="error">
+        Please enter a positive number for adults.
+      </div>
+      
+      <label for="">Number of Children:</label>
+      <input type="number" required min="0" [(ngModel)]="RoomDetails.children" name="children" #children="ngModel" [class.is-invalid]="children.invalid && children.touched">
+      <div *ngIf="children.invalid && children.touched" class="error">
+        Please enter a positive number for children.
+      </div>
+      
+      <label for="">Check-in:</label>
+      <input type="date" [(ngModel)]="RoomDetails.roomcheckindate" name="check-in" #checkin="ngModel" [min]="minDate" (change)="validateDates()" [class.is-invalid]="checkin.invalid && checkin.touched || invalidCheckinDate">
+      <div *ngIf="invalidCheckinDate" class="error">
+        Check-in date cannot be in the past.
+      </div>
+      
+      <label for="">Check-Out:</label>
+      <input type="date" [(ngModel)]="RoomDetails.roomcheckoutdate" name="check-out" #checkout="ngModel" [min]="RoomDetails.roomcheckindate" (change)="validateDates()" [class.is-invalid]="checkout.invalid && checkout.touched || invalidCheckoutDate">
+      <div *ngIf="invalidCheckoutDate" class="error">
+        Check-out date must be after the check-in date.
+      </div>
+    </div>
+    
+    <button class="book-btn" (click)="bookRoom(room._id)">Book</button>
+    <button class="cart-btn" (click)="addToCart(room)">Add to Cart</button>
+    
+    <div class="amenities">
+      <label>Amenities:</label>
+      <div class="amenities-list">
+        <p><i class="fas fa-wifi"></i> Free Wifi</p>
+        <p><i class="fas fa-utensils"></i> Complimentary Meals</p>
+        <p><i class="fas fa-concierge-bell"></i> 24/7 Room Service</p>
+        <p><i class="fas fa-swimming-pool"></i> Swimming Pool</p>
+        <p><i class="fas fa-spa"></i> Spa & Wellness Center</p>
+        <p><i class="fas fa-car"></i> Free Parking</p>
+        <p><i class="fas fa-dumbbell"></i> Gym & Fitness Center</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .amenities-list p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+
+<!-- Image Viewer Modal -->
+<div *ngIf="isImageViewerOpen" class="modal-overlay" (click)="closeImageViewer()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-button" (click)="closeImageViewer()">×</button>
+    <div class="image-container" 
+         (wheel)="handleZoom($event)"
+         (mousedown)="startPan($event)"
+         (mousemove)="pan($event)"
+         (mouseup)="endPan()"
+         (mouseleave)="endPan()">
+      <img [src]="selectedImage" 
+           [style.transform]="'scale(' + scale + ') translate(' + translateX + 'px, ' + translateY + 'px)'"
+           alt="Room image">
+    </div>
+    <div class="controls">
+      <button (click)="zoomIn()">+</button>
+      <button (click)="zoomOut()">-</button>
+      <button (click)="resetZoom()">Reset</button>
+    </div>
+  </div>
+</div>
+<div class="filter">
+  <h1>Filter the room</h1>
+  <label for="">Bed Type:</label>
+  <select name="" id="">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <label for="">Price</label>
+  <input type="number" placeholder="Enter Price">
+  <label for="">Rating</label>
+  <select name="" id="">
+    <option value="3">3</option>
+    <option value="3">4</option>
+    <option value="3">5</option>
+  </select>
+</div>
+<app-footer></app-footer>
+<div class="modal-backdrop" *ngIf="isModalOpen">
+  <div class="modal" [@fadeIn]>
+    <h3>Your Booking Is Confirmed!</h3>
+    <p>The booking details have been sent to your email. Please check them before arriving at the hotel.</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>

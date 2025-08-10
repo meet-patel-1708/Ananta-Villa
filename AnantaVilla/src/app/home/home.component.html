@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+
+  <div class="image-container">
+    <img src="assets/image/3.png" class="img" alt="Hotel Image" />
+    <div class="text-overlay">
+      <p class="title">Welcome To Ananta Villa Hotel</p>
+      <p class="disc">Great Getaway for you</p>
+      <p class="disc2">
+        When you get into a hotel room, you lock the door, and you know there is
+        secrecy, there is luxury, there is fantasy. There is comfort. There is
+        reassurance.
+      </p>
+    </div>
+  </div>
+  
+  <div class="hotel-intro">
+    <div class="hotel-disc">
+      <h2 class="htitle">Best Hotel In India</h2>
+      <p class="hdisc">
+        Ananta is a premium hospitality brand committed to creating exceptional experiences for our guests. At the heart of everything we do is the belief that every moment counts, and we aim to make every stay unforgettable. From the moment you walk through our doors, you'll experience the warmth of our hospitality, where thoughtful details and personalized service elevate your visit. We believe in making the ordinary extraordinary, delivering comfort, luxury, and unforgettable memories in every encounter. It’s our unwavering commitment to excellence that has made Serene Stays a name synonymous with trust, comfort, and luxury.
+      </p>
+    </div>
+      <div>
+      <img src="/assets/image/back.jpeg" class="rimg" alt="Hotel Image">
+    </div>
+    <!-- Dots for pagination -->
+    <div class="hotel-features">
+      <div class="feature-slide">
+          <div class="icon-container">
+              <i class="fas fa-shield-alt"></i> <!-- Example icon for safety -->
+          </div>
+          <h1 class="htitle">{{ slides[currentSlideIndex].title }}</h1>
+          <p class="hdisc">{{ slides[currentSlideIndex].description }}</p>
+      </div>
+      
+      <div class="pagination-dots">
+          <span *ngFor="let slide of slides; let i = index" 
+                class="dot" 
+                [class.active]="i === currentSlideIndex" 
+                (click)="goToSlide(i)">
+          </span>
+      </div>
+  </div>
+    
+  <div class="room-slider-container">
+    <!-- Previous Button -->
+    <button class="nav-button prev" (click)="slide('left')" [class.disabled]="currentIndex === 0">
+      <span class="arrow">‹</span>
+    </button>
+  
+    <!-- Slider Wrapper -->
+    <div class="slider-wrapper">
+      <div class="slider" [style.transform]="'translateX(' + translateX + '%)'">
+        <div *ngFor="let room of rooms" class="room-slide">
+          <div class="room-image">
+            <img [src]="room.Image1" [alt]="room.Name">
+          </div>
+          <div class="room-details">
+            <h2 class="room-title">{{room.Name}}</h2>
+            <div class="price-tag">
+              <span class="currency">₹</span>
+              <span class="amount">{{room.Price.toLocaleString()}}</span>
+              <span class="per-night">/night</span>
+            </div>
+            
+            <p class="room-description">Bed: {{room.Bed}}</p>
+            
+            <div class="features">
+              <div class="feature">
+                Size:
+                <span>{{room.Size}} sq.mt</span>
+              </div>
+            </div>
+  
+            <div class="amenities">
+              <label>Amenities:</label>
+              <div class="amenities-list">
+                <p><i class="fas fa-wifi"></i> Free Wifi</p>
+                <p><i class="fas fa-utensils"></i> Complimentary Meals</p>
+                <p><i class="fas fa-concierge-bell"></i> 24/7 Room Service</p>
+                <p><i class="fas fa-swimming-pool"></i> Swimming Pool</p>
+                <p><i class="fas fa-spa"></i> Spa & Wellness Center</p>
+                <p><i class="fas fa-car"></i> Free Parking</p>
+                <p><i class="fas fa-dumbbell"></i> Gym & Fitness Center</p>
+              </div>
+            </div>
+  
+            <button class="book-now">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <button class="nav-button next" (click)="slide('right')" 
+              [class.disabled]="currentIndex >= rooms.length - 1">
+        <span class="arrow">›</span>
+      </button>
+    </div>
+    <div class="service-details">
+      <div class="breakfast">
+        <img src="assets/image/breakfast.png" alt="Breakfast Service">
+        <div class="breakfast-info">
+          <h1 class="breakfast-title">Our Breakfast Service</h1>
+          <p class="breakfast-disc">Start your day right with a delicious breakfast, served fresh to energize your morning!</p>
+          <button class="view-all-button">View All Services</button>
+        </div>
+      </div>
+      <div class="spa">
+        <img src="assets/image/spa.png" alt="Spa Service">
+        <div class="spa-info">
+          <h1 class="spa-title">Get Your Spa Day!</h1>
+          <p class="spa-disc">Indulge in ultimate relaxation with our rejuvenating spa treatments, designed to refresh your body, mind, and soul.</p>
+          <button class="view-all-button">View All Services</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="availability">
+      <h1 class="availability-title">Availibility</h1>
+      <p class="availability-disc">You can see the schedule below to be able to track availability or booked on days of the month</p>
+      <div class="calendar-container" >
+        <div class="calendar-header">
+          <button (click)="prevMonth()" class="nav-btn">&larr;</button>
+          <div class="month-year">{{ currentMonthName }} {{ currentYear }}</div>
+          <button (click)="nextMonth()" class="nav-btn">&rarr;</button>
+        </div>
+        <div class="calendar">
+          <div class="calendar-row">
+            <div *ngFor="let day of weekDays" class="day-label">{{ day }}</div>
+          </div>
+          <div class="calendar-row" *ngFor="let week of weeks">
+            <div *ngFor="let day of week" class="day" [class.today]="day.isToday" [class.unavailable]="!day.isCurrentMonth" [class.past-date]="day.isPast" [class.selected-date]="day.isSelected" (click)="!day.isPast && selectDate(day)" >
+              {{ day.date }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="r-details">
+        <label for="">Room Type</label>
+        <select name="" id="">
+          <option value="">1 beded Room</option>
+          <option value="">2 beded Room</option>
+          <option value="">3 beded Room</option>
+          <option value="">4 beded Room</option>
+        </select>
+        <div class="adults">
+          <label for="">Adults:</label>
+          <input type="text" required #adults="">
+        </div>
+        <div class="childern">
+          <label for="">Childern:</label>
+          <input type="text" required #childern="">
+        </div>
+        <button type="submit">Book Now</button>
+      </div>
+    </div>
+<!-- Footer -->
+<app-footer></app-footer>

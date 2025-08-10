@@ -1,0 +1,265 @@
+/* General Styling */
+/* Main container styles */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+.vertical-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #090909;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+.vertical-container h1 {
+  color: #db8c04;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #de8a03;
+  text-align: center;
+  font-family: "Emilys Candy", cursive;
+}
+
+/* Navigation items container */
+.vertical-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Button styles */
+.vertical-item a {
+  padding: 12px 20px;
+  background-color: transparent;
+  border: none;
+  color: #bc7c03;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.vertical-item a:hover {
+  background-color: #b87903;
+  padding-left: 25px;
+  color: white;
+}
+
+/* Active button state */
+.vertical-item a.active {
+  background-color: #e6e2dc;
+  border-left: 4px solid #007bff;
+}
+
+/* Main content adjustment */
+form {
+  margin-left: 270px; /* Adjust main content to accommodate sidebar */
+  padding: 20px;
+}
+
+/* Existing form styles */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vertical-container {
+      width: 200px;
+  }
+
+  form {
+      margin-left: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .vertical-container {
+      width: 100%;
+      height: auto;
+      position: relative;
+  }
+
+  form {
+      margin-left: 0;
+  }
+
+  .vertical-item {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+
+  .vertical-item button {
+      width: auto;
+  }
+}
+body {
+  font-family: "Playfair Display", serif;
+  background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form Container */
+form {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left:30%;
+}
+
+form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Heading */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #777;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background: #f9f9f9;
+}
+
+input:focus {
+  border-color: #8e44ad;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(142, 68, 173, 0.2);
+}
+
+/* Error Message */
+.error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #6a3093, #3c8ce7);
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Toast Notification */
+.toast {
+  background: #8e44ad;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease, fadeOut 0.5s ease 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

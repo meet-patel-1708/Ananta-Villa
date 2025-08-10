@@ -1,0 +1,43 @@
+  <app-admin-panel-navbar></app-admin-panel-navbar>
+  <h1>Enter Room Details:</h1>
+  <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="Name">Room Name:</label>
+      <input id="Name" type="text" formControlName="Name" placeholder="Enter Room Name"/>
+      <div *ngIf="roomForm.get('Name')?.invalid && roomForm.get('Name')?.touched" class="error">
+        Room name must be at least 3 characters long.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Price">Room Price:</label>
+      <input id="Price" type="text" formControlName="Price" placeholder="Enter Room Price" />
+      <div *ngIf="roomForm.get('Price')?.invalid && roomForm.get('Price')?.touched" class="error">
+        Price is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Size">Room Size:</label>
+      <input id="Size" type="text" formControlName="Size" placeholder="Enter Room Size"/>
+      <div *ngIf="roomForm.get('Size')?.invalid && roomForm.get('Size')?.touched" class="error">
+        Size is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Bed">Room Bed:</label>
+      <input id="Bed" type="text" formControlName="Bed" placeholder="Enter Room Bed"/>
+      <div *ngIf="roomForm.get('Bed')?.invalid && roomForm.get('Bed')?.touched" class="error">
+        Bed is required.
+      </div>
+    </div>
+
+    <!-- Image Uploads -->
+    <div class="form-group" *ngFor="let i of [1,2,3,4]">
+      <label for="Image{{i}}">Room Photo {{i}}:</label>
+      <input id="Image{{i}}" type="file" (change)="onFileChange($event, 'Image'+i)" accept="image/*" />
+    </div>
+    <button type="submit" [disabled]="roomForm.invalid">Submit</button>
+  </form>
+
+  <div *ngIf="showToast" class="toast">{{ toastMessage }}</div>

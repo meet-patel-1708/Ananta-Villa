@@ -1,0 +1,101 @@
+<!-- login.component.html -->
+<div class="container">
+    <div class="logo">
+      <a><img src="/assets/image/A2.png" class="logo-img" alt="Ananta Villa"></a>
+      <h1 class="logo-title">Ananta Villa</h1>
+      <p class="logo-discription">Hotels & Resorts</p>
+    </div>
+  
+    <div class="register-login">
+      <p class="rl-title">Register/Login</p>
+      <p class="rl-discription">Register/Login to Hotel to enjoy exclusive privileges</p>
+  
+      <!-- Error message display -->
+      <div *ngIf="loginError" class="error-message">
+        {{ loginError }}
+      </div>
+  
+      <div class="form">
+        <form #otpForm="ngForm" (ngSubmit)="otp(otpForm)">
+          <p>Register/Login Through OTP</p>
+          <div class="form-group">
+            <input 
+              class="name" 
+              type="text" 
+              #namefield="ngModel" 
+              [(ngModel)]="name" 
+              [class.is-invalid]="namefield.touched && namefield.invalid" 
+              required 
+              name="name" 
+              placeholder="Enter Name">
+            <div *ngIf="namefield.invalid && namefield.touched" class="error-text">
+              Name is required
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <input 
+              type="text" 
+              required 
+              #mobile="ngModel" 
+              [class.is-invalid]="mobile.touched && mobile.invalid" 
+              [(ngModel)]="mobileNumber" 
+              class="mobile" 
+              name="mobile" 
+              id="mobile" 
+              pattern="[0-9]{10}" 
+              placeholder="Enter your 10-digit mobile number">
+            <div *ngIf="mobile.invalid && mobile.touched" class="error-text">
+              Please enter a valid 10-digit mobile number
+            </div>
+          </div>
+  
+          <button 
+            type="submit" 
+            class="btn" 
+            [disabled]="otpForm.invalid">
+            Send OTP
+          </button>
+        </form>
+      </div>
+  
+      <!-- Modal for OTP Verification -->
+      <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()"></div>
+      <div *ngIf="showModal" class="modal">
+        <div class="modal-header">Verify OTP</div>
+        <div class="modal-body">
+          <p>Please enter the OTP sent to your registered mobile number:</p>
+          <input 
+            type="text" 
+            [(ngModel)]="verify" 
+            maxlength="6" 
+            placeholder="Enter OTP" />
+        </div>
+        <div class="modal-footer">
+          <button class="btn-verify" (click)="verifyOtp()">Verify OTP</button>
+          <button class="btn-close" (click)="closeModal()">Cancel</button>
+        </div>
+      </div>
+  
+      <!-- Google Login -->
+      <div class="gLogin">
+        <div id="g_id_onload"
+             data-client_id="120749046284-fd7pilk9plesjtqi4a03535bicjuq00j.apps.googleusercontent.com"
+             data-context="use"
+             data-ux_mode="popup"
+             data-callback="handleCredentialResponse"
+             data-auto_select="true"
+             data-itp_support="true">
+        </div>
+  
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="circle"
+             data-theme="outline"
+             data-text="signin_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+      </div>
+    </div>
+  </div>

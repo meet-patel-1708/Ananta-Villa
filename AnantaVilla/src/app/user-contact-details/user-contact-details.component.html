@@ -1,0 +1,22 @@
+<app-admin-panel-navbar></app-admin-panel-navbar>
+<div class="container">
+    <h1>User Contact Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile number</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contact of contactData">
+                <td>{{contact.name}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.mobileno}}</td>
+                <td>{{contact.message}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

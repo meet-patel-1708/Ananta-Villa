@@ -1,0 +1,58 @@
+/* General Styling */
+/* Main container styles */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap');
+.vertical-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #090909;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+.vertical-container h1 {
+  color: #db8c04;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #de8a03;
+  text-align: center;
+  font-family: "Emilys Candy", cursive;
+}
+
+/* Navigation items container */
+.vertical-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Button styles */
+.vertical-item a {
+  padding: 12px 20px;
+  background-color: transparent;
+  border: none;
+  color: #bc7c03;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.vertical-item a:hover {
+  background-color: #b87903;
+  padding-left: 25px;
+  color: white;
+}
+
+/* Active button state */
+.vertical-item a.active {
+  background-color: #e6e2dc;
+  border-left: 4px solid #007bff;
+}

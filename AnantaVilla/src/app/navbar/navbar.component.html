@@ -1,0 +1,73 @@
+<div class="toast-container">
+  <div *ngFor="let toast of toasts" class="toast" [ngClass]="toast.type">
+    {{ toast.message }}
+  </div>
+</div>
+<div class="container">
+  <div class="left-items">
+    <div class="phone">
+      <p class="mobile">+91 94 26 38 98 17</p>
+    </div>
+    <div class="location">
+      <p>India</p>
+    </div>
+    <div class="termsCondition">
+      <p>Terms & Condition</p>
+    </div>
+  </div>
+</div>
+<div class="navbar">
+  <button class="menu-button" (click)="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="mobile-nav" [class.show]="isMobileMenuOpen">
+    <a (click)="navigateToHome()">Home</a>
+    <a (click)="navigateToCart()">Add Cart</a>
+    <a (click)="navigateToRooms()">Rooms</a>
+  </div>
+  <h1 class="hotel-name">Ananta Villa</h1>
+  <div class="dropdown" *ngIf="user">
+    <button class="dropdown-button" (click)="toggleDropdown()">
+      <span *ngIf="loginType === 'otp'">{{ user.name }}</span>
+      <span *ngIf="loginType === 'google'">
+        <img *ngIf="user.photo" [src]="user.photo" alt="Profile" class="profile-thumbnail">
+        {{ user.name }}
+      </span>
+      <span class="dropdown-arrow">▼</span>
+    </button>
+    <a class="Login-button" (click)="navigateToHome()">
+      <span>Home</span>
+    </a>
+    <a class="AddCart-button" (click)="navigateToCart()">
+      <span>Cart</span>
+    </a>
+    <a class="room-button" (click)="navigateToRooms()">
+      <span>Rooms</span>
+    </a>
+    <a class="booking-button" (click)="navigateToBookings()">
+      <span>My Bookings</span>
+    </a>
+    <a class="contact-button" (click)="navigateToContact()">
+      <span>Contact Us</span>
+    </a>
+
+
+    <div class="dropdown-content" [class.show]="isDropdownOpen">
+      <div *ngIf="loginType === 'otp'" class="user-info">
+        <p class="user-name">{{ user.name }}</p>
+        <p class="user-mobile"><i class="fas fa-phone-alt"></i>{{ user.mobile }}</p>
+      </div>
+      <div *ngIf="loginType === 'google'" class="user-info">
+        <p class="user-name">{{ user.name }}</p>
+        <p class="user-email"><i class="fas fa-envelope"></i>{{ user.email }}</p>
+      </div>
+
+      <button class="logout-button" (click)="logout()">
+        <span></span> Logout
+      </button>
+
+    </div>
+  </div>
+</div>
